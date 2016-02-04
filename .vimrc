@@ -35,7 +35,16 @@ function AddAuthor()
         endwhile
         call AddTitle()
 endfunction
-
+"-------------------------------------
+".vimrc jsformat
+map <c-f> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for less
+autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
+"--------------------------------------
  "set guifont=Letter Gothic Std:h14
  set guifont=Courier\ New:h14
  set rtp+=~/.vim/bundle/vundle/  
@@ -74,6 +83,9 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'mattn/emmet-vim'
 Plugin 'jQuery'
 Plugin 'othree/html5.vim'
+"jsbeautify
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
