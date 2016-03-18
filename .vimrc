@@ -35,16 +35,7 @@ function AddAuthor()
         endwhile
         call AddTitle()
 endfunction
-"-------------------------------------
-".vimrc jsformat
-map <c-f> :call JsBeautify()<cr>
-" or
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for less
-autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
-"--------------------------------------
+
  "set guifont=Letter Gothic Std:h14
  set guifont=Courier\ New:h14
  set rtp+=~/.vim/bundle/vundle/  
@@ -83,9 +74,11 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'mattn/emmet-vim'
 Plugin 'jQuery'
 Plugin 'othree/html5.vim'
-"jsbeautify
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
+Plugin 'pangloss/vim-javascript'
+Plugin 'groenewege/vim-less'
+Bundle 'mxw/vim-jsx'
+Bundle 'Quramy/tsuquyomi'
+Bundle 'leafgarland/typescript-vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -146,7 +139,7 @@ let g:html5_event_handler_attributes_complete = 0
 autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <silent> <F2> :NERDTreeToggle<CR>
+map <silent> <c-r> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " airline settings
@@ -186,7 +179,15 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
+"vim jsx settings
+let g:jsx_ext_required = 0
+"vim ts settings
+let g:typescript_indent_disable = 1
+"vim less settings
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
 let g:user_emmet_install_global = 0
 autocmd FileType html,css EmmetInstall
@@ -204,7 +205,9 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
+autocmd FileType typescript setlocal completeopt+=menu,preview
+autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript
+autocmd BufNewFile,BufRead *.less setf less
 " ctrlp settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -228,3 +231,4 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
   endif
 endfunction
+
