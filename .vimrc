@@ -79,6 +79,7 @@ Plugin 'groenewege/vim-less'
 Bundle 'mxw/vim-jsx'
 Bundle 'Quramy/tsuquyomi'
 Bundle 'leafgarland/typescript-vim'
+Bundle 'Shougo/vimproc.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -93,10 +94,16 @@ let mapleader=','
 "set t_Co=256
 colorscheme monokai
 
+set formatoptions+=mM 
+
 set termencoding=utf-8
 set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 set cul
+
+set columns=200 lines=70
+"设置命令历史行数 
+set history=100 
 
 set laststatus=2 
 set number
@@ -158,7 +165,7 @@ let Tlist_Show_One_File = 1 "只显示一个文件中的tag，默认为显示多
 let Tlist_Sort_Type ='name' "Tag的排序规则，以名字排序。默认是以在文件中出现的顺序排序
 let Tlist_GainFocus_On_ToggleOpen = 1 "Taglist窗口打开时，立刻切换为有焦点状态
 let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_WinWidth = 32 "设置窗体宽度为32，可以根据自己喜好设置
+let Tlist_WinWidth = 40 "设置窗体宽度为32，可以根据自己喜好设置
 map <silent> <F9> :TlistToggle <CR>
 
 " emment settings
@@ -231,4 +238,3 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
   endif
 endfunction
-
