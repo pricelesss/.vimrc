@@ -80,6 +80,7 @@ Bundle 'mxw/vim-jsx'
 Bundle 'Quramy/tsuquyomi'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'Shougo/vimproc.vim'
+Plugin 'isRuslan/vim-es6'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -101,6 +102,7 @@ set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 set cul
 
+
 set columns=200 lines=70
 "设置命令历史行数 
 set history=100 
@@ -119,8 +121,9 @@ set autoindent
 set smartindent
 set ruler
 set ignorecase
-set hls
-set foldmethod=syntax
+set hls 
+"set foldmethod=syntax
+set foldmethod=marker
 set showcmd
 
 " backup
@@ -139,6 +142,10 @@ set whichwrap+=<,>,h,l
 " javascript settings
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
+" Speed up scrolling of the viewport slightly
+nnoremap <C-e> 2<C-e>
+nnoremap <C-y> 2<C-y>
+
 " html5 settings
 let g:html5_event_handler_attributes_complete = 0
 
@@ -147,6 +154,7 @@ autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <silent> <c-r> :NERDTreeToggle<CR>
+" set close vim window if nerdTree is the last tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " airline settings
@@ -238,3 +246,5 @@ function! Multiple_cursors_after()
     exe 'NeoCompleteUnlock'
   endif
 endfunction
+
+set foldmethod=syntax
