@@ -157,6 +157,28 @@ map <silent> <c-r> :NERDTreeToggle<CR>
 " set close vim window if nerdTree is the last tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" 在浏览器预览 for Mac
+function! ViewInBrowser(name)
+    let file = expand("%:p")
+    let l:browsers = {
+        \"cr":"open -a \"Google Chrome\"",
+        \"ff":"open -a Firefox",
+    \}
+    let htdocs='/Users/leon1/'
+    let strpos = stridx(file, substitute(htdocs, '\\\\', '\', "g"))
+    let file = '"'. file . '"'
+    exec ":update " .file
+    "echo file .' ## '. htdocs
+    if strpos == -1
+        exec ":silent ! ". l:browsers[a:name] ." file://". file
+    else
+        let file=substitute(file, htdocs, "http://127.0.0.1:8090/", "g")
+        let file=substitute(file, '\\', '/', "g")
+        exec ":silent ! ". l:browsers[a:name] file
+    endif
+endfunction
+nmap <Leader>cr :call ViewInBrowser("cr")<cr>
+nmap <Leader>ff :call ViewInBrowser("ff")<cr>
 " airline settings
 " let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
