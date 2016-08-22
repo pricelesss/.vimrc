@@ -81,6 +81,7 @@ Bundle 'Quramy/tsuquyomi'
 Bundle 'leafgarland/typescript-vim'
 Bundle 'Shougo/vimproc.vim'
 Plugin 'isRuslan/vim-es6'
+Plugin 'iamcco/markdown-preview.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -179,6 +180,38 @@ function! ViewInBrowser(name)
 endfunction
 nmap <Leader>cr :call ViewInBrowser("cr")<cr>
 nmap <Leader>ff :call ViewInBrowser("ff")<cr>
+
+" markdown预览
+let g:mkdp_path_to_chrome = "google-chrome"
+" path to the chrome or the command to open chrome(or other modern browsers)
+
+let g:mkdp_auto_start = 0
+" set to 1, the vim will open the preview window once enter the markdown
+" buffer
+
+let g:mkdp_auto_open = 0
+" set to 1, the vim will auto open preview window when you edit the
+" markdown file
+
+let g:mkdp_auto_close = 1
+" set to 1, the vim will auto close current preview window when change
+" from markdown buffer to another buffer
+
+let g:mkdp_refresh_slow = 0
+" set to 1, the vim will just refresh markdown when save the buffer or
+" leave from insert mode, default 0 is auto refresh markdown as you edit or
+" move the cursor
+
+let g:mkdp_command_for_global = 0
+" set to 1, the MarkdownPreview command can be use for all files,
+" by default it just can be use in markdown file
+nmap <silent> <F8> <Plug>MarkdownPreview        " for normal mode
+imap <silent> <F8> <Plug>MarkdownPreview        " for insert mode
+nmap <silent> <F9> <Plug>StopMarkdownPreview    " for normal mode
+imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
+let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+" or
+let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
 " airline settings
 " let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
@@ -217,7 +250,7 @@ let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 "vim jsx settings
-let g:jsx_ext_required = 0
+let g:jsx_ext_required = 1
 "vim ts settings
 let g:typescript_indent_disable = 1
 "vim less settings
@@ -269,4 +302,4 @@ function! Multiple_cursors_after()
   endif
 endfunction
 
-set foldmethod=syntax
+"set foldmethod=syntax
