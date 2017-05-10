@@ -15,8 +15,8 @@ function UpdateTitle()
 endfunction
 function AddTitle()
         call append(0,"/**********************************************************")
-        call append(1," * Author        : yexiang")
-        call append(2," * Email         : yexiang@b5m.com")
+        call append(1," * Author        : zhoujingyuan")
+        call append(2," * Email         : zhoujingyuan@qiyi.com")
         call append(3," * Last modified : ".strftime("%Y-%m-%d %H:%M"))
         call append(4," * Filename      : ".expand("%:t"))
         call append(5," * Description   : ")
@@ -82,6 +82,9 @@ Bundle 'leafgarland/typescript-vim'
 Bundle 'Shougo/vimproc.vim'
 Plugin 'isRuslan/vim-es6'
 Plugin 'iamcco/markdown-preview.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -212,6 +215,10 @@ imap <silent> <F9> <Plug>StopMarkdownPreview    " for insert mode
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 " or
 let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
+
+
+" vim_markdown
+let g:vim_markdown_folding_disabled = 1
 " airline settings
 " let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
@@ -238,7 +245,7 @@ let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:emmet_html5 = 0
 
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,css,style EmmetInstall
 " let g:user_emmet_leader_key='<C-Z>' 
 " let g:user_emmet_expandabbr_key='<Tab>'
 
@@ -260,7 +267,7 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,css,style EmmetInstall
 
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
@@ -270,14 +277,17 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css,style setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript
 autocmd BufNewFile,BufRead *.less setf less
+autocmd BufNewFile,BufRead *.style setf scss
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown syntax=markdown
+autocmd BufNewFile,BufRead *.ejs set filetype=html 
 " ctrlp settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
