@@ -37,7 +37,7 @@ function AddAuthor()
 endfunction
 
  "set guifont=Letter Gothic Std:h14
- set guifont=Courier\ New:h14
+ set guifont=Courier\ New:h16
  set rtp+=~/.vim/bundle/vundle/  
  call vundle#rc()  
   
@@ -68,10 +68,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'Shougo/neocomplcache.vim'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'kien/ctrlp.vim'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-commentary'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'mattn/emmet-vim'
 Plugin 'jQuery'
 Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
@@ -82,9 +80,9 @@ Bundle 'leafgarland/typescript-vim'
 Bundle 'Shougo/vimproc.vim'
 Plugin 'isRuslan/vim-es6'
 Plugin 'iamcco/markdown-preview.vim'
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
+Plugin 'posva/vim-vue'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -115,9 +113,9 @@ set laststatus=2
 set number
 set noshowmode
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 
 set expandtab
 set smarttab
@@ -283,6 +281,8 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType typescript setlocal completeopt+=menu,preview
+autocmd FileType vue syntax sync fromstart
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript
 autocmd BufNewFile,BufRead *.less setf less
 autocmd BufNewFile,BufRead *.style setf scss
