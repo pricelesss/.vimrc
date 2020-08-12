@@ -15,8 +15,8 @@ function UpdateTitle()
 endfunction
 function AddTitle()
         call append(0,"/**********************************************************")
-        call append(1," * Author        : priceless")
-        call append(2," * Email         : priceless.zjy@gmail.com")
+        call append(1," * Author        : zhoujingyuan")
+        call append(2," * Email         : zhoujingyuan@qiyi.com")
         call append(3," * Last modified : ".strftime("%Y-%m-%d %H:%M"))
         call append(4," * Filename      : ".expand("%:t"))
         call append(5," * Description   : ")
@@ -329,3 +329,4 @@ function! Multiple_cursors_after()
 endfunction
 
 "set foldmethod=syntax
+
